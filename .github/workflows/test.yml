@@ -36,4 +36,4 @@ jobs:
       - name: Verify Deployment
         run: |
           kubectl get pods,svc
-          minikube get service flask-hello-world-service
+          minikube service flask-hello-world-service
