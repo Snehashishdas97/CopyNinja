@@ -17,7 +17,7 @@ jobs:
         
       - name: Build Docker image
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASWORD
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker build -t snehashish97/copyninja_1:${{ github.run_number }} .
           docker images
           docker push snehashish97/copyninja_1:${{ github.run_number }}
