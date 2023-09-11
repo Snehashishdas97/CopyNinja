@@ -32,6 +32,7 @@ jobs:
         run: |
           kubectl apply -f hello-world-deployment.yaml
           kubectl apply -f hello-world-service.yaml
+          sleep 30
 
       - name: Verify Deployment
         run: |
