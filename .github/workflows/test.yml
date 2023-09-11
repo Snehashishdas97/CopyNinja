@@ -1,0 +1,37 @@
+name: Deploy to Minikube
+
+on:
+  push:
+    branches:
+      - main # Change to your branch name if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Start Minikube
+        run: minikube start
+
+      - name: Configure kubectl
+        run: kubectl config set-context minikube
+
+      - name: Build Docker image
+        run: |
+          docker build -t snehashish97/copyninja_1:${{ github.run_number }} .
+          docker images
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push snehashish97/copyninja_1:${{ github.run_number }}
+
+      - name: Deploy to Minikube
+        run: |
+          kubectl apply -f path/to/your/hello-world-deployment.yaml
+          kubectl apply -f path/to/your/hello-world-service.yaml
+
+      - name: Verify Deployment
+        run: |
+          kubectl get pods,svc
+          minikube get service flask-hello-world-service
