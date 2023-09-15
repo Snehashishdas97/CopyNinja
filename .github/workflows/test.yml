@@ -1,7 +1,7 @@
 name: Deploy to Minikube
 env:
   DOCKER_USER: '${{secrets.DOCKERHUB_USERNAME}}'
-  DOCKER_PASSWORD: '${{secrets.DOCKERHUB_PASSWORD}}'
+  DOCKER_TOKEN: '${{secrets.DOCKERHUB_TOKEN}}'
 on:
   push:
     branches:
@@ -15,9 +15,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
+      - name: Docker Login
+        uses: docker/login-action@v3.0.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
       - name: Build Docker image
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
           docker build -t snehashish97/copyninja_1:${{ github.run_number }} .
           docker images
           docker push snehashish97/copyninja_1:${{ github.run_number }}
