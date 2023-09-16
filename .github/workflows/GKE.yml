@@ -3,6 +3,10 @@ env:
   DOCKER_USER: '${{secrets.DOCKERHUB_USERNAME}}'
   DOCKER_TOKEN: '${{secrets.DOCKERHUB_TOKEN}}'
   GCP_SECRET: '${{ secrets.GCP_SECRET }}'
+  PROJECT_ID: devops-cbd3375 # TODO: update Google Cloud project id
+  GAR_LOCATION: us-central1 # TODO: update Artifact Registry location
+  SERVICE: copyninja_1 # TODO: update Cloud Run service name
+  REGION: us-central1 # TODO: update Cloud Run service region
   
 on:
   push:
