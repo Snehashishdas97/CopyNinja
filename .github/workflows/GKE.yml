@@ -35,7 +35,7 @@ jobs:
           docker build -t snehashish97/copyninja_1:${{ github.run_number }} .
           docker images
           docker push snehashish97/copyninja_1:${{ github.run_number }}
-          docker push gcr.io/devops-cbd3375/copyninja_1:${{ github.sha }}
+          #docker push gcr.io/devops-cbd3375/copyninja_1:${{ github.sha }}
           
       - name: Configure kubectl
         run: gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
@@ -45,3 +45,6 @@ jobs:
         run: |
           kubectl apply -f hello-world-deployment.yaml
           kubectl apply -f hello-world-service.yaml
+          
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
