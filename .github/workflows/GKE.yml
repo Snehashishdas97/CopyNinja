@@ -40,7 +40,23 @@ jobs:
       - name: Configure kubectl
         run: gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
         
-
+      - name: Install Google Cloud SDK
+        run: |
+          curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
+          tar -xzf google-cloud-sdk.tar.gz
+          ./google-cloud-sdk/install.sh
+          if: success() # Only install if the previous steps were successful
+          
+      - name: Authenticate with Google Cloud
+        run: |
+          #export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/service-account-key.json"
+          gcloud auth activate-service-account --key-file=${{ secrets.GCP_SECRET }}
+          if: success()
+    
+      - name: Install kubectl-credential-gke
+        run: gcloud components install kubectl-credential-gke
+        if: success()
+      
       - name: Deploy to GKE
         run: |
           kubectl apply -f hello-world-deployment.yaml
