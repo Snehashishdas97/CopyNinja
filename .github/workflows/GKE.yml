@@ -56,7 +56,7 @@ jobs:
           if: success()
     
       - name: Install kubectl-credential-gke
-        run: gcloud components install kubectl-credential-gke
+        run: gcloud components install kubectl-credential-gke #comment
         if: success()
       
       - name: Deploy to GKE
