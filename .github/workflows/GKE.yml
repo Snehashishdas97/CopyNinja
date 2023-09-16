@@ -38,7 +38,9 @@ jobs:
           #docker push gcr.io/devops-cbd3375/copyninja_1:${{ github.sha }}
           
       - name: Configure kubectl
-        run: gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
+        run: |
+          gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
+          gcloud components install gke-gcloud-auth-plugin
         
       - name: Set up Google Cloud SDK
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0.2.0
