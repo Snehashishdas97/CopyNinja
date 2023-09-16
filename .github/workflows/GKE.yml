@@ -49,15 +49,10 @@ jobs:
       
       - name: Install kubectl
         run: |
-          apt-get update
-          apt-get install -y kubectl
+          #apt-get update
+          sudo apt-get install -y kubectl
           if: success() # Only install if the previous steps were successful
         
-      - name: Authenticate with Google Cloud
-        run: |
-          #export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/service-account-key.json"
-          gcloud auth activate-service-account --key-file=${{ secrets.GCP_SECRET }}
-          if: success()
     
       - name: Install kubectl-credential-gke
         run: gcloud components install kubectl-credential-gke
