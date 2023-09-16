@@ -45,9 +45,9 @@ jobs:
       
       - name: Install kubectl
         run: |
-        apt-get update
-        apt-get install -y kubectl
-        if: success() # Only install if the previous steps were successful
+          apt-get update
+          apt-get install -y kubectl
+          if: success() # Only install if the previous steps were successful
         
       - name: Authenticate with Google Cloud
         run: |
