@@ -46,13 +46,7 @@ jobs:
           service_account_key: ${{ secrets.GCP_SECRET }}
           project_id: devops-cbd3375
           export_default_credentials: true
-      
-      - name: Install kubectl
-        run: |
-          #apt-get update
-          sudo apt-get install -y kubectl
-          if: success() # Only install if the previous steps were successful
-        
+              
     
       - name: Install kubectl-credential-gke
         run: gcloud components install kubectl-credential-gke
