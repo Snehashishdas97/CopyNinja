@@ -27,7 +27,6 @@ jobs:
       - name: Deploy to GKE
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-        version: ${{ github.run_number }}
         project_id: $PROJECT_ID
         service_account_key: ${{ secrets.GCP_SECRET }}
 
