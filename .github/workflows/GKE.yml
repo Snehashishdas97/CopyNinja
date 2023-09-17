@@ -30,8 +30,11 @@ jobs:
         #with:
           #credentials_json: '${{ secrets.GCP_SECRET }}'
           
-      - id: 'get-credentials'
-        uses: 'google-github-actions/get-gke-credentials@v1'
+      - name: Set GCLOUD_PROJECT
+        run: echo "GCLOUD_PROJECT=devops-cbd3375" >> $GITHUB_ENV
+
+      - name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v0.6
         with:
           cluster_name: 'simpletest'
           location: 'us-central1'
