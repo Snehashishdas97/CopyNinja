@@ -43,7 +43,7 @@ jobs:
       - name: Apply deployment
         run: |
           docker pull snehashish97/copyninja_1:${{ github.run_number }}
-          gcloud container clusters get-credentials simpletest --region us-central1 --zone us-central1-a --project devops-cbd3375
+          gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
           kubectl apply -f hello-world-deployment.yaml
           kubectl apply -f hello-world-service.yaml
           
