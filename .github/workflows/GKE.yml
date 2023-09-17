@@ -56,4 +56,5 @@ jobs:
           kubectl apply -f hello-world-service.yaml
           
       - name: Show Output
-        run: echo ${{ steps.deploy.outputs.url }}
+        run: |
+          echo $(kubectl get svc flask-hello-world-service|awk -F ' ' '{print $3}')
