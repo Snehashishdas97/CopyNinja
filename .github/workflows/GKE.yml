@@ -30,7 +30,14 @@ jobs:
           service_account_key: ${{ secrets.GCP_SECRET }}
           project_id: devops-cbd3375
           export_default_credentials: true
-
+          
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          project_id: devops-cbd3375
+          service_account_key: ${{ secrets.GCP_SECRET }}
+          install_components: 'gke-gcloud-auth-plugin'
+          export_default_credentials: true
       
       - name: Build Docker image
         run: |
@@ -43,6 +50,7 @@ jobs:
       - name: Apply deployment
         run: |
           docker pull snehashish97/copyninja_1:${{ github.run_number }}
+          gcloud auth configure-docker use-central1-docker.pkg.dev
           gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
           kubectl apply -f hello-world-deployment.yaml
           kubectl apply -f hello-world-service.yaml
