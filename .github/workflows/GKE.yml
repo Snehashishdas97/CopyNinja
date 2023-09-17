@@ -40,7 +40,7 @@ jobs:
           location: 'us-central1'
           
       - name: Set up Google Cloud SDK
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0.2.0
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
           service_account_key: ${{ secrets.GCP_SECRET }}
           project_id: devops-cbd3375
