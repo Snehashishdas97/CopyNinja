@@ -27,7 +27,8 @@ jobs:
       - name: Deploy to GKE
         uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-        project_id: $PROJECT_ID
+        version: v0.1
+        project_id: devops-cbd3375
         service_account_key: ${{ secrets.GCP_SECRET }}
 
       - name: Configure kubectl
