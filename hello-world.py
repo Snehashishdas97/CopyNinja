@@ -1,11 +1,15 @@
-from flask import Flask
-import datadog
+from flask import Flask, render_template
 
 app = Flask(__name__)
-#datadog.initialize(api_key=d4111343-89c5-440a-baa0-a054430b909a)
+
+# Initialize a visitor counter
+visitor_count = 0
+
 @app.route('/')
-def hello():
-    return "Hello, World!"
+def index():
+    global visitor_count
+    visitor_count += 1
+    return render_template('index.html', count=visitor_count)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=80)
