@@ -57,4 +57,4 @@ jobs:
           
       - name: Show Output
         run: |
-          echo "App URL= http://$(kubectl get svc flask-hello-world-service|awk -F ' ' '{print $4}')"
+          echo "App URL= http://$(kubectl get svc flask-hello-world-service|awk -F ' ' '{print $4}')|grep -v -i 'External'"
