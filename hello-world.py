@@ -1,15 +1,41 @@
-from flask import Flask, render_template
+import mysql.connector
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Initialize a visitor counter
-visitor_count = 0
+# Database connection configuration
+db_config = {
+    "user": "your-db-username",
+    "password": "your-db-password",
+    "host": "your-db-host",
+    "database": "your-db-name",
+}
 
 @app.route('/')
 def index():
-    global visitor_count
-    visitor_count += 1
-    return render_template('index.html', count=visitor_count)
+    try:
+        # Connect to the Google Cloud SQL database
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor()
+
+        # Increment the visitor count in the database
+        cursor.execute("UPDATE visitor_count SET count = count + 1")
+        connection.commit()
+
+        # Retrieve the updated count
+        cursor.execute("SELECT count FROM visitor_count")
+        count = cursor.fetchone()[0]
+
+        return render_template('index.html', count=count)
+
+    except Exception as e:
+        print("Error:", str(e))
+        return "An error occurred"
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=80)
