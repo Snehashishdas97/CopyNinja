@@ -18,7 +18,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
-                env:
+        env:
         - name: DB_USER
           valueFrom:
             secretKeyRef:
