@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-hello-world
-        image: snehashish97/copyninja_1
+        image: snehashish97/copyninja_1:${{ github.run_number }}
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
