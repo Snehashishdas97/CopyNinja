@@ -52,6 +52,7 @@ jobs:
           docker pull snehashish97/copyninja_1:latest
           gcloud auth configure-docker use-central1-docker.pkg.dev
           gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
+          kubectl apply -f cloud-secrets.yaml
           kubectl apply -f hello-world-deployment.yaml
           kubectl apply -f hello-world-service.yaml
           

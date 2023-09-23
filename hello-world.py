@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 # Database connection configuration
 db_config = {
-    "user": "dbuser",
-    "password": "dbuser",
-    "host": "35.223.86.138",
-    "database": "orcamsiprd",
+    "db_user": "dbuser",
+    "db_password": "dbuser",
+    "db_host": "35.223.86.138",
+    "db_name": "orcamsiprd",
     #"unix_socket":"devops-cbd3375:us-central1:devops-hub"
 }
 

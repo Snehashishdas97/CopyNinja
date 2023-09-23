@@ -18,3 +18,24 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+                env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-secret
+              key: db-username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-secret
+              key: db-password
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-secret
+              key: db-name
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: cloudsql-secret
+              key: db-host
