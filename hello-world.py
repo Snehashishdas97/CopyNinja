@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 # Database connection configuration
 db_config = {
-    "db_user": "dbuser",
-    "db_password": "dbuser",
-    "db_host": "35.223.86.138",
-    "db_name": "orcamsiprd",
+    "DB_USER": "dbuser",
+    "DB_PASSWORD": "dbuser",
+    "DB_HOST": "35.223.86.138",
+    "DB_NAME": "orcamsiprd",
     #"unix_socket":"devops-cbd3375:us-central1:devops-hub"
 }
 
@@ -17,9 +17,6 @@ def index():
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
     try:
-        # Connect to the Google Cloud SQL database
-        #connection = mysql.connector.connect(**db_config)
-        #cursor = connection.cursor()
 
         # Increment the visitor count in the database
         cursor.execute("UPDATE visitor_count SET count = count + 1")
