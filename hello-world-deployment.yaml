@@ -16,4 +16,4 @@ spec:
       - name: flask-hello-world
         image: snehashish97/copyninja_1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
