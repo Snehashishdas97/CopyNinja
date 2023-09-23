@@ -9,15 +9,17 @@ db_config = {
     "password": "dbuser",
     "host": "35.223.86.138",
     "database": "orcamsiprd",
-    "unix_socket":"devops-cbd3375:us-central1:devops-hub"
+    #"unix_socket":"devops-cbd3375:us-central1:devops-hub"
 }
 
 @app.route('/')
 def index():
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
     try:
         # Connect to the Google Cloud SQL database
-        connection = mysql.connector.connect(**db_config)
-        cursor = connection.cursor()
+        #connection = mysql.connector.connect(**db_config)
+        #cursor = connection.cursor()
 
         # Increment the visitor count in the database
         cursor.execute("UPDATE visitor_count SET count = count + 1")
