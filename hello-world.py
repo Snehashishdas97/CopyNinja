@@ -9,6 +9,7 @@ db_config = {
     "password": "dbuser",
     "host": "35.223.86.138",
     "database": "orcamsiprd",
+    "unix_socket":"devops-cbd3375:us-central1:devops-hub"
 }
 
 @app.route('/')
