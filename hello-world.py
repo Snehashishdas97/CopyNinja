@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 # Database connection configuration
 db_config = {
-    "user": "your-db-username",
-    "password": "your-db-password",
-    "host": "your-db-host",
-    "database": "your-db-name",
+    "user": "dbuser",
+    "password": "dbuser",
+    "host": "35.223.86.138",
+    "database": "orcamsiprd",
 }
 
 @app.route('/')
