@@ -50,7 +50,7 @@ jobs:
       
       - name: Apply deployment
         run: |
-          DOCKER_IMAGE=snehashishdas97/copyninja_1:${{ github.run_number }}
+          DOCKER_IMAGE=snehashish97/copyninja_1:${{ github.run_number }}
           docker pull $DOCKER_IMAGE
           gcloud auth configure-docker use-central1-docker.pkg.dev
           gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
