@@ -14,18 +14,20 @@ db_config = {
 
 @app.route('/')
 def index():
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor()
-    try:
+    #connection = mysql.connector.connect(**db_config)
+    #cursor = connection.cursor()
+    count=10
+    return render_template('index.html', count=count)
+    """try:
 
         # Increment the visitor count in the database
-        cursor.execute("UPDATE visitor_count SET count = count + 1")
-        connection.commit()
+       # cursor.execute("UPDATE visitor_count SET count = count + 1")
+        #connection.commit()
 
         # Retrieve the updated count
-        cursor.execute("SELECT count FROM visitor_count")
-        count = cursor.fetchone()[0]
-
+        #cursor.execute("SELECT count FROM visitor_count")
+        #count = cursor.fetchone()[0]
+        count=1
         return render_template('index.html', count=count)
 
     except Exception as e:
@@ -35,7 +37,7 @@ def index():
     finally:
         if connection.is_connected():
             cursor.close()
-            connection.close()
+            connection.close()"""
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8080)
