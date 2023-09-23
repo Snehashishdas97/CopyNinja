@@ -41,15 +41,15 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t snehashish97/copyninja_1:latest .
+          docker build -t snehashish97/copyninja_1:${{ github.run_number }} .
           docker images
-          docker push snehashish97/copyninja_1:latest
+          docker push snehashish97/copyninja_1:${{ github.run_number }}
           #docker push gcr.io/devops-cbd3375/copyninja_1:${{ github.sha }}
         
       
       - name: Apply deployment
         run: |
-          docker pull snehashish97/copyninja_1:latest
+          docker pull snehashish97/copyninja_1:${{ github.run_number }}
           gcloud auth configure-docker use-central1-docker.pkg.dev
           gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
           kubectl apply -f cloud-secrets.yaml
