@@ -44,12 +44,13 @@ jobs:
           docker build -t snehashish97/copyninja_1:${{ github.run_number }} .
           docker images
           docker push snehashish97/copyninja_1:${{ github.run_number }}
+          DOCKER_IMAGE=snehashish97/copyninja_1:${{ github.run_number }}
           #docker push gcr.io/devops-cbd3375/copyninja_1:${{ github.sha }}
         
       
       - name: Apply deployment
         run: |
-          docker pull snehashish97/copyninja_1:${{ github.run_number }}
+          docker pull snehashish97/copyninja_1:$DOCKER_IMAGE
           gcloud auth configure-docker use-central1-docker.pkg.dev
           gcloud container clusters get-credentials simpletest --region us-central1 --project devops-cbd3375
           kubectl apply -f cloud-secrets.yaml
