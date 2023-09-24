@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: flask-hello-world
-        image: snehashish97/copyninja_1:69
+        image: snehashish97/copyninja_1:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
